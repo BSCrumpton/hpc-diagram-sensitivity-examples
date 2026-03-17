@@ -1,0 +1,37 @@
+digraph g {
+    ranksep="1"
+    nodesep=2
+    FW1[shape=square,label="Site1\nFirewall"];
+    FW2[shape=square,label="Site2\nFirewall"];
+    System3[shape=square,label="System3"];
+    System1[shape=square,label="System1"];
+    System2[shape=square,label="System2"];
+    ISP[shape=square,label="ISP"];
+    Sites[shape=square,dir=both,label="Remote\nUsers"];
+    Site2_10G[shape=square,dir=both,label="Site2\nIPSec\nTunnel"];
+    Site1_10G[shape=square,dir=both,label="Site1\nIPSec\nTunnel"];
+    System3:w -> System3:w[color=red,dir=both,label="data\nSubnet1\nSubnet2\nSubnet3"];
+    System3:e -> System3:e[color=green,dir=both,headlabel="mgmt\nSubnet4"];
+    System3:n -> System3:n[color=blue,dir=both,label="OPA\nSubnet5\nSubnet6"];
+    System3 -> FW2 [color=red,dir=both];
+    System3 -> FW2 [color=green,dir=both];
+    FW2 -> Site2_10G[color=purple,dir=both,taillabel="Subnet1\nSubnet2\nSubnet3\nSubnet4",headlabel="Subnet10\nSubnet11\nSubnet13\nSubnet14"];
+    FW2 -> ISP[color=orange,dir=both,taillabel="Subnet7",headlabel="Subnet8\nSubnet9"];
+    System1:w -> System1:w[color=red,dir=both,headlabel="data\nSubnet10"];
+    System1:e -> System1:e[color=green,dir=both,headlabel="mgmt\nSubnet11"];
+    System1 -> FW1 [color=red,dir=both];
+    System1 -> FW1 [color=green,dir=both];
+    FW1 -> Site1_10G[color=purple,dir=both,taillabel="Subnet10\nSubnet11\nSubnet13\nSubnet14",headlabel="Subnet1\nSubnet2\nSubnet3\nSubnet4"];
+    FW1 -> ISP[color=orange,dir=both,taillabel="Subnet12",headlabel="Subnet8\nSubnet9"];
+    System2:w -> System2:w[color=red,dir=both,headlabel="data\nSubnet13"];
+    System2:e -> System2:e[color=green,dir=both,headlabel="mgmt\nSubnet14"];
+    System2:n -> System2:n[color=blue,dir=both,label="IB\nSubnet15\nSubnet15"];
+    System2 -> FW1 [color=red,dir=both];
+    System2 -> FW1 [color=green,dir=both];
+    Sites -> ISP[color=orange,dir=both,xlabel="Subnet8\nSubnet9"];
+    Site2_10G -> Site1_10G[color=purple,dir=both,label="over 1G or 10G program line",taillabel="TunnelIP-A",headlabel="TunnelIP-B"];
+    subgraph {
+        rank=sink;
+        Site2_10G,Site1_10G;
+    }
+}
