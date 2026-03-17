@@ -1,0 +1,24 @@
+// Adding a firewall, acknowledging that there may be routing between the data and admin networks
+digraph g {
+    rankdir="BT";
+    overlap="scalexy"
+    Admin_Net[shape=triangle,label="Admin\nNetwork"];
+    Compute[shape=square];
+    Firewall[shape=square];
+    Storage[shape=square];
+    Infra[shape=square,label="Infrastructure\nNodes"];
+    HS_Net[shape=triangle,label="Highspeed\nNetwork"];
+    Data_Net[shape=triangle,label="Data\nNetwork"];
+    External[shape=hexagon,label="External\nUsers"]
+    External -> Firewall[color="green"];
+    Firewall -> Data_Net[dir="both",color="green"];
+    Firewall -> Admin_Net[dir="both",color="red"];
+    Data_Net -> Compute[dir="both",color="green"];
+    HS_Net -> Compute[dir="both",color="blue"];
+    Compute -> Admin_Net[dir="both",color="red"];
+    Data_Net -> Infra[dir="both",color="green"];
+    HS_Net -> Infra[dir="both",color="blue"];
+    Infra -> Admin_Net[dir="both",color="red"];
+    HS_Net -> Storage[dir="both",color="blue"];
+    Storage -> Admin_Net[dir="both",color="red"];
+}
