@@ -1,0 +1,49 @@
+digraph g {
+    rankdir=LR;
+    subgraph{
+        node[shape=box]
+        Key1[label=<<table border="0" cellpadding="2" cellspacing="0" cellborder="0">
+        <tr><td align="right" port="i1">Admin: 1G Eth</td></tr>
+        <tr><td align="right" port="i2">Admin: 10G Eth</td></tr>
+        <tr><td align="right" port="i3">Admin: 100G Eth</td></tr>
+        <tr><td align="right" port="i4">OPA100</td></tr>
+        <tr><td align="right" port="i5">CN5000</td></tr>
+        <tr><td align="right" port="i6">IB100</td></tr>
+        <tr><td align="right" port="i7">IB200</td></tr>
+        <tr><td align="right" port="i8">Data: 1G Eth</td></tr>
+        <tr><td align="right" port="i9">Data: 10G Eth</td></tr>
+        <tr><td align="right" port="i10">Data: 40G Eth</td></tr>
+        <tr><td align="right" port="i11">Data: 100G Eth</td></tr>
+        <tr><td align="right" port="i12">Data: 200G Eth</td></tr>
+        <tr><td align="right" port="i13">FC 32Gbps</td></tr>
+        </table>>]
+        Key2[style=invis label=<<table border="0" cellpadding="2" cellspacing="0" cellborder="0">
+        <tr><td port="i1">&nbsp;</td></tr>
+        <tr><td port="i2">&nbsp;</td></tr>
+        <tr><td port="i3">&nbsp;</td></tr>
+        <tr><td port="i4">&nbsp;</td></tr>
+        <tr><td port="i5">&nbsp;</td></tr>
+        <tr><td port="i6">&nbsp;</td></tr>
+        <tr><td port="i7">&nbsp;</td></tr>
+        <tr><td port="i8">&nbsp;</td></tr>
+        <tr><td port="i9">&nbsp;</td></tr>
+        <tr><td port="i10">&nbsp;</td></tr>
+        <tr><td port="i11">&nbsp;</td></tr>
+        <tr><td port="i12">&nbsp;</td></tr>
+        <tr><td port="i13">&nbsp;</td></tr>
+        </table>>]
+        Key1:i1:e -> Key2:i1:w [color=red];
+        Key1:i2:e -> Key2:i2:w [color=brown];
+        Key1:i3:e -> Key2:i3:w [color=magenta];
+        Key1:i4:e -> Key2:i4:w [color=blue];
+        Key1:i5:e -> Key2:i5:w [color=pink];
+        Key1:i6:e -> Key2:i6:w [color=lightseagreen];
+        Key1:i7:e -> Key2:i7:w [color=tan];
+        Key1:i8:e -> Key2:i8:w [color=cyan];
+        Key1:i9:e -> Key2:i9:w [color=green];
+        Key1:i10:e -> Key2:i10:w [color=purple];
+        Key1:i11:e -> Key2:i11:w [color=orange];
+        Key1:i12:e -> Key2:i12:w [color=gray];
+        Key1:i13:e -> Key2:i13:w [color=darkolivegreen];
+    }
+}
