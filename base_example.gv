@@ -29,7 +29,7 @@ digraph g {
     System2 -> FW1 [color=red,dir=both];
     System2 -> FW1 [color=green,dir=both];
     Sites -> ISP[color=orange,dir=both,xlabel="Subnet8\nSubnet9"];
-    Site2_10G -> Site1_10G[color=purple,dir=both,label="over 1G or 10G program line",taillabel="TunnelIP-A",headlabel="TunnelIP-B"];
+    Site2_10G -> Site1_10G[color=purple,dir=both,label="over 1G or 10G point-to-point connection",taillabel="TunnelIP-A",headlabel="TunnelIP-B"];
     subgraph {
         rank=sink;
         Site2_10G,Site1_10G;
