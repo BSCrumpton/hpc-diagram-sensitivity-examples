@@ -106,4 +106,5 @@ digraph g {
         Key1:i12:e -> Key2:i12:w [color=gray];
         Key1:i13:e -> Key2:i13:w [color=darkolivegreen];
     }
+    { rank=same; Key1; Admin_Net; } 
 }
