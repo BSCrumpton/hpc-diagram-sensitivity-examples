@@ -1,0 +1,33 @@
+// And now we want to show the internal system traffic, add external subnet
+digraph g {
+    ranksep="1"
+    nodesep=3
+    FW2[shape=square,label="Site2\nFirewall"];
+    FW1[shape=square,label="Site1\nFirewall"];
+    System1[shape=square,label="System1"];
+    System2[shape=square,label="System2"];
+    ISP[shape=square,label="ISP"];
+    Sites[shape=square,dir=both,label="Remote\nUsers"];
+    Site2_10G[shape=square,dir=both,label="Site2\nIPSec\nTunnel"];
+    Site1_10G[shape=square,dir=both,label="Site1\nIPSec\nTunnel"];
+    System1:w -> System1:w[color=red,dir=both,label="admin\n192.168.140.0/24"];
+    System1:e -> System1:e[color=green,dir=both,label="data\n192.168.40.0/24"];
+    System1:n -> System1:n[color=blue,dir=both,label="HighSpeed\n10.31.10.0/24"];
+    System1 -> FW1 [color=red,dir=both];
+    System1 -> FW1 [color=green,dir=both];
+    FW2 -> Site2_10G[color=purple,dir=both];
+    FW2 -> ISP[color=orange,dir=both,taillabel="128.61.48.0/26"];
+    FW1 -> Site1_10G[color=purple,dir=both];
+    FW1 -> ISP[color=orange,dir=both,taillabel="130.207.10.0/26"];
+    System2:w -> System2:w[color=red,dir=both,label="admin\n172.16.140.0/24"];
+    System2:e -> System2:e[color=green,dir=both,label="data\n172.16.40.0/24"];
+    System2:n -> System2:n[color=blue,dir=both,label="HighSpeed\n10.60.20.0/24"];
+    System2 -> FW2 [color=red,dir=both];
+    System2 -> FW2 [color=green,dir=both];
+    Sites -> ISP[color=orange,dir=both];
+    Site1_10G -> Site2_10G[color=purple,dir=both,label="over point-to-point connection",taillabel="TunnelIP-A",headlabel="TunnelIP-B"];
+    subgraph {
+        rank=sink;
+        Site2_10G,Site1_10G;
+    }
+}
