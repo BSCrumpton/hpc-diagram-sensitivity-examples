@@ -1,0 +1,18 @@
+// Turns out, we actually have firewalls!
+digraph g {
+    ranksep="1";
+    nodesep=2;
+    FW2[shape=square,label="Site2\nFirewall"];
+    FW1[shape=square,label="Site1\nFirewall"];
+    System1[shape=square,label="System1"];
+    System2[shape=square,label="System2"];
+    ISP[shape=square,label="ISP"];
+    Sites[shape=square,dir=both,label="Remote\nUsers"];
+    System1 -> FW1 [color=red,dir=both];
+    System1 -> FW1 [color=green,dir=both];
+    FW1 -> ISP[color=orange,dir=both];
+    System2 -> FW2 [color=red,dir=both];
+    System2 -> FW2 [color=green,dir=both];
+    FW2 -> ISP[color=orange,dir=both];
+    Sites -> ISP[color=orange,dir=both];
+}
