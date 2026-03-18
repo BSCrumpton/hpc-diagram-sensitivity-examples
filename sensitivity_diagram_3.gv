@@ -1,0 +1,52 @@
+// The system beings to get a little bit more specific, types of storage, types of Infra nodes
+digraph g {
+    rankdir="BT";
+    overlap="scalexy"
+    Admin_Net[shape=triangle,label="Admin\nNetwork"];
+    // Compute[shape=square];
+    Firewall[shape=square];
+    // Storage[shape=square];
+    // Infra[shape=square,label="Infrastructure\nNodes"];
+    HS_Net[shape=triangle,label="Highspeed\nNetwork"];
+    Data_Net[shape=triangle,label="Data\nNetwork"];
+    External[shape=hexagon,label="External\nUsers"]
+    External -> Firewall[color="green"];
+    Firewall -> Data_Net[dir="both",color="green"];
+    Firewall -> Admin_Net[dir="both",color="red"];
+    // Data_Net -> Compute[dir="both",color="green"];
+    // HS_Net -> Compute[dir="both",color="blue"];
+    // Compute -> Admin_Net[dir="both",color="red"];
+    // Data_Net -> Infra[dir="both",color="green"];
+    // HS_Net -> Infra[dir="both",color="blue"];
+    // Infra -> Admin_Net[dir="both",color="red"];
+    // HS_Net -> Storage[dir="both",color="blue"];
+    // Storage -> Admin_Net[dir="both",color="red"];
+    CPU[shape=square,label="CPU\nCompute\nNodes"];
+    Data_Net -> CPU[dir="both",color="green"];
+    HS_Net -> CPU[dir="both",color="blue"];
+    CPU -> Admin_Net[dir="both",color="red"];
+    GPU[shape=square,label="GPU\nCompute\nNodes"];
+    Data_Net -> GPU[dir="both",color="green"];
+    HS_Net -> GPU[dir="both",color="blue"];
+    GPU -> Admin_Net[dir="both",color="red"];
+    Storage1[shape=square,label="Parallel\nFilesystem"];
+    HS_Net -> Storage1[dir="both",color="blue"];
+    Storage1 -> Admin_Net[dir="both",color="red"];
+    Storage2[shape=square,label="Home\nFilesystem"];
+    Data_Net -> Storage2[dir="both",color="green"];
+    Storage2 -> Admin_Net[dir="both",color="red"];
+    Login[shape=square,label="Login\nNodes"];
+    Data_Net -> Login[dir="both",color="green"];
+    HS_Net -> Login[dir="both",color="blue"];
+    Login -> Admin_Net[dir="both",color="red"];
+    Dbase[shape=square,label="Database\nNodes"];
+    Data_Net -> Dbase[dir="both",color="green"];
+    Dbase -> Admin_Net[dir="both",color="red"];
+    Datamover[shape=square,label="Datamover\nNodes"];
+    Data_Net -> Datamover[dir="both",color="green"];
+    HS_Net -> Datamover[dir="both",color="blue"];
+    Datamover -> Admin_Net[dir="both",color="red"];
+    VM[shape=square,label="Virtual\nMachine\nNodes"];
+    Data_Net -> VM[dir="both",color="green"];
+    VM -> Admin_Net[dir="both",color="red"];
+}
