@@ -1,0 +1,27 @@
+// What if we want an IPSec tunnel to treat traffic between clusters as "internal"?
+digraph g {
+    ranksep="1";
+    nodesep=2;
+    FW2[shape=square,label="Site2\nFirewall"];
+    FW1[shape=square,label="Site1\nFirewall"];
+    System1[shape=square,label="System1"];
+    System2[shape=square,label="System2"];
+    ISP[shape=square,label="ISP"];
+    Sites[shape=square,dir=both,label="Remote\nUsers"];
+    Site1_10G[shape=square,dir=both,label="Site1\nIPSec\nTunnel"];
+    Site2_10G[shape=square,dir=both,label="Site2\nIPSec\nTunnel"];
+    System1 -> FW1 [color=red,dir=both];
+    System1 -> FW1 [color=green,dir=both];
+    FW1 -> Site1_10G[color=purple,dir=both];
+    FW1 -> ISP[color=orange,dir=both];
+    FW2 -> Site2_10G[color=purple,dir=both];
+    FW2 -> ISP[color=orange,dir=both];
+    System2 -> FW2 [color=red,dir=both];
+    System2 -> FW2 [color=green,dir=both];
+    Sites -> ISP[color=orange,dir=both];
+    Site1_10G -> Site2_10G[color=purple,dir=both,label="over point-to-point connection",taillabel="TunnelIP-A",headlabel="TunnelIP-B"];
+    subgraph {
+        rank=sink;
+        Site1_10G,Site2_10G;
+    }
+}
