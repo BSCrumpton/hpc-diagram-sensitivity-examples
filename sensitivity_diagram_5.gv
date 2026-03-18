@@ -1,0 +1,109 @@
+// Now adding more specificity to the network infrastructure
+digraph g {
+    rankdir="BT";
+    overlap="scalexy"
+    Admin_Net[shape=triangle,label="Admin\nSwitches"];
+    // Compute[shape=square];
+    Firewall[shape=square];
+    // Storage[shape=square];
+    // Infra[shape=square,label="Infrastructure\nNodes"];
+    HS_Net[shape=triangle,label="Highspeed\nNetwork"];
+    Data_Net[shape=triangle,label="Data\nSwitches"];
+    External[shape=hexagon,label="External\nUsers"]
+    External -> Firewall[color="green"];
+    // Firewall -> Data_Net[dir="both",color="green"];
+    // Firewall -> Admin_Net[dir="both",color="red"];
+    // Data_Net -> Compute[dir="both",color="green"];
+    // HS_Net -> Compute[dir="both",color="blue"];
+    // Compute -> Admin_Net[dir="both",color="red"];
+    // Data_Net -> Infra[dir="both",color="green"];
+    // HS_Net -> Infra[dir="both",color="blue"];
+    // Infra -> Admin_Net[dir="both",color="red"];
+    // HS_Net -> Storage[dir="both",color="blue"];
+    // Storage -> Admin_Net[dir="both",color="red"];
+    CPU[shape=square,label="CPU\nCompute\nNodes"];
+    Data_Net -> CPU[dir="both",color="green"];
+    HS_Net -> CPU[dir="both",color="blue"];
+    CPU -> Admin_Net[dir="both",color="red"];
+    GPU[shape=square,label="GPU\nCompute\nNodes"];
+    Data_Net -> GPU[dir="both",color="green"];
+    HS_Net -> GPU[dir="both",color="blue"];
+    GPU -> Admin_Net[dir="both",color="red"];
+    Storage1[shape=square,label="Parallel\nFilesystem"];
+    HS_Net -> Storage1[dir="both",color="blue"];
+    Storage1 -> Admin_Net[dir="both",color="red"];
+    Storage2[shape=square,label="Home\nFilesystem"];
+    Data_Net -> Storage2[dir="both",color="green"];
+    Storage2 -> Admin_Net[dir="both",color="red"];
+    Login[shape=square,label="Login\nNodes"];
+    Data_Net -> Login[dir="both",color="green"];
+    HS_Net -> Login[dir="both",color="blue"];
+    Login -> Admin_Net[dir="both",color="red"];
+    Dbase[shape=square,label="Database\nNodes"];
+    Data_Net -> Dbase[dir="both",color="green"];
+    Dbase -> Admin_Net[dir="both",color="red"];
+    Datamover[shape=square,label="Datamover\nNodes"];
+    Data_Net -> Datamover[dir="both",color="green"];
+    HS_Net -> Datamover[dir="both",color="blue"];
+    Datamover -> Admin_Net[dir="both",color="red"];
+    VM[shape=square,label="Virtual\nMachine\nNodes"];
+    Data_Net -> VM[dir="both",color="green"];
+    VM -> Admin_Net[dir="both",color="red"];
+    TapeStage[shape=square,label="Tape\nStaging\nStorage"]
+    Datamover -> TapeStage[dir=both,color=darkolivegreen];
+    Tape[shape=square,label="Tape\nDrives"]
+    TapeStage -> Tape[dir=both,color=darkolivegreen];
+    AdminAgg[shape=triangle,label="Admin\nAggregation\nSwitches"];
+    Firewall -> AdminAgg[dir="both",color="magenta"];
+    AdminAgg -> Admin_Net[dir="both",color="brown"];
+    DataAgg[shape=triangle,label="Data\nAggregation\nSwitches"];
+    Firewall -> DataAgg[dir="both",color="orange"];
+    DataAgg -> Data_Net[dir="both",color="purple"];
+    subgraph{
+        rank=same;
+        node[shape=box]
+        Key1[label=<<table border="0" cellpadding="2" cellspacing="0" cellborder="0">
+        <tr><td align="right" port="i1">Admin: 1G Eth</td></tr>
+        <tr><td align="right" port="i2">Admin: 10G Eth</td></tr>
+        <tr><td align="right" port="i3">Admin: 100G Eth</td></tr>
+        <tr><td align="right" port="i4">OPA100</td></tr>
+        <tr><td align="right" port="i5">CN5000</td></tr>
+        <tr><td align="right" port="i6">IB100</td></tr>
+        <tr><td align="right" port="i7">IB200</td></tr>
+        <tr><td align="right" port="i8">Data: 1G Eth</td></tr>
+        <tr><td align="right" port="i9">Data: 10G Eth</td></tr>
+        <tr><td align="right" port="i10">Data: 40G Eth</td></tr>
+        <tr><td align="right" port="i11">Data: 100G Eth</td></tr>
+        <tr><td align="right" port="i12">Data: 200G Eth</td></tr>
+        <tr><td align="right" port="i13">FC 32Gbps</td></tr>
+        </table>>]
+        Key2[style=invis label=<<table border="0" cellpadding="2" cellspacing="0" cellborder="0">
+        <tr><td port="i1">&nbsp;</td></tr>
+        <tr><td port="i2">&nbsp;</td></tr>
+        <tr><td port="i3">&nbsp;</td></tr>
+        <tr><td port="i4">&nbsp;</td></tr>
+        <tr><td port="i5">&nbsp;</td></tr>
+        <tr><td port="i6">&nbsp;</td></tr>
+        <tr><td port="i7">&nbsp;</td></tr>
+        <tr><td port="i8">&nbsp;</td></tr>
+        <tr><td port="i9">&nbsp;</td></tr>
+        <tr><td port="i10">&nbsp;</td></tr>
+        <tr><td port="i11">&nbsp;</td></tr>
+        <tr><td port="i12">&nbsp;</td></tr>
+        <tr><td port="i13">&nbsp;</td></tr>
+        </table>>]
+        Key1:i1:e -> Key2:i1:w [color=red];
+        Key1:i2:e -> Key2:i2:w [color=brown];
+        Key1:i3:e -> Key2:i3:w [color=magenta];
+        Key1:i4:e -> Key2:i4:w [color=blue];
+        Key1:i5:e -> Key2:i5:w [color=pink];
+        Key1:i6:e -> Key2:i6:w [color=lightseagreen];
+        Key1:i7:e -> Key2:i7:w [color=tan];
+        Key1:i8:e -> Key2:i8:w [color=cyan];
+        Key1:i9:e -> Key2:i9:w [color=green];
+        Key1:i10:e -> Key2:i10:w [color=purple];
+        Key1:i11:e -> Key2:i11:w [color=orange];
+        Key1:i12:e -> Key2:i12:w [color=gray];
+        Key1:i13:e -> Key2:i13:w [color=darkolivegreen];
+    }
+}
