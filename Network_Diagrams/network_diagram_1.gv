@@ -1,0 +1,12 @@
+// the base case
+digraph g {
+    ranksep="1";
+    nodesep=2;
+    System1[shape=square,label="System1"];
+    Sites[shape=square,dir=both,label="Remote\nUsers"];
+    System2[shape=square,label="System2"];
+    ISP[shape=square,label="ISP"];
+    System1 -> ISP[color=orange,dir=both];
+    Sites -> ISP[color=orange,dir=both];
+    System2 -> ISP[color=orange,dir=both];
+}
