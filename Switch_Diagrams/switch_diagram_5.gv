@@ -1,0 +1,101 @@
+// Add in port information about all of the connections
+digraph g {
+    ranksep=2;
+    nodesep=2;
+    FW[shape=square,label="Firewall"];
+    // Data_Net[shape=square,dir=both,label="Data\nNetwork\nSwitches"];
+    // Admin_Net[shape=square,dir=both,label="Admin\nNetwork\nSwitches"];
+    FW -> Data_Agg1[color=orange,dir=both,taillabel="port1",headlabel="port24",labeldistance=3];
+    FW -> Admin_Agg1[color=magenta,dir=both,taillabel="port3",headlabel="port24",labeldistance=4];
+    FW -> Data_Agg2[color=orange,dir=both,taillabel="port2",headlabel="port24",labeldistance=4];
+    FW -> Admin_Agg2[color=magenta,dir=both,taillabel="port4",headlabel="port24",labeldistance=2];
+    Data_Agg1[shape=square,dir=both,label="Data\nAgg\nSwitch1"];
+    Admin_Agg1[shape=square,dir=both,label="Admin\nAgg\nSwitch1"];
+    Data_Agg2[shape=square,dir=both,label="Data\nAgg\nSwitch2"];
+    Admin_Agg2[shape=square,dir=both,label="Admin\nAgg\nSwitch2"];
+    // Data_Agg1 -> Data_Net[color=purple,dir=both];
+    // Admin_Agg1 -> Admin_Net[color=brown,dir=both];
+    // Data_Agg2 -> Data_Net[color=purple,dir=both];
+    // Admin_Agg2 -> Admin_Net[color=brown,dir=both];
+    Data_Agg1 -> Data_Agg2[color=orange,dir=both,taillabel="port1",headlabel="port1"];
+    Data_Agg2 -> Data_Agg1[color=orange,dir=both,taillabel="port2",headlabel="port2"];
+    Admin_Agg1 -> Admin_Agg2[color=magenta,dir=both,taillabel="port1",headlabel="port1"];
+    Admin_Agg2 -> Admin_Agg1[color=magenta,dir=both,taillabel="port1",headlabel="port1"];
+    Data1[shape=square,dir=both,label="Data\nSwitch1"];
+    Admin1[shape=square,dir=both,label="Admin\nSwitch1"];
+    Data2[shape=square,dir=both,label="Data\nSwitch2"];
+    Admin2[shape=square,dir=both,label="Admin\nSwitch2"];
+    Data3[shape=square,dir=both,label="Data\nSwitch3"];
+    Admin3[shape=square,dir=both,label="Admin\nSwitch3"];
+    Admin4[shape=square,dir=both,label="Admin\nSwitch4"];
+    Admin5[shape=square,dir=both,label="Admin\nSwitch5"];
+    Data_Agg1 -> Data1[color=purple,dir=both,taillabel="port3",headlabel="port1"];
+    Data_Agg2 -> Data1[color=purple,dir=both,taillabel="port3",headlabel="port2",labeldistance=3];
+    Data_Agg1 -> Data2[color=purple,dir=both,taillabel="port4",headlabel="port1",labeldistance=3];
+    Data_Agg2 -> Data2[color=purple,dir=both,taillabel="port4",headlabel="port2",labeldistance=3];
+    Data_Agg1 -> Data3[color=purple,dir=both,taillabel="port5",headlabel="port1",labeldistance=2];
+    Data_Agg2 -> Data3[color=purple,dir=both,taillabel="port5",headlabel="port2",labeldistance=2];
+    Admin_Agg1 -> Admin1[color=brown,dir=both,taillabel="port3",headlabel="port1",labeldistance=3];
+    Admin_Agg2 -> Admin1[color=brown,dir=both,taillabel="port3",headlabel="port2",labeldistance=3];
+    Admin_Agg1 -> Admin2[color=brown,dir=both,taillabel="port4",headlabel="port1",labeldistance=2];
+    Admin_Agg2 -> Admin2[color=brown,dir=both,taillabel="port4",headlabel="port2",labeldistance=3];
+    Admin_Agg1 -> Admin3[color=brown,dir=both,taillabel="port5",headlabel="port1",labeldistance=3];
+    Admin_Agg2 -> Admin3[color=brown,dir=both,taillabel="port5",headlabel="port2",labeldistance=3];
+    Admin3 -> Admin4[color=brown,dir=both,taillabel="port3",headlabel="port1",labeldistance=3];
+    Admin4 -> Admin5[color=brown,dir=both,taillabel="port3",headlabel="port1",labeldistance=3];
+    subgraph{
+        rank=same;
+        Data_Agg1,Data_Agg2;
+    } 
+    subgraph{
+        rank=same;
+       Admin_Agg1,Admin_Agg2;
+    } 
+    subgraph{
+        rank=same;
+        node[shape=box];
+        Key1[label=<<table border="0" cellpadding="2" cellspacing="0" cellborder="0">
+        <tr><td align="right" port="i1">Admin: 1G Eth</td></tr>
+        <tr><td align="right" port="i2">Admin: 10G Eth</td></tr>
+        <tr><td align="right" port="i3">Admin: 100G Eth</td></tr>
+        <tr><td align="right" port="i4">OPA100</td></tr>
+        <tr><td align="right" port="i5">CN5000</td></tr>
+        <tr><td align="right" port="i6">IB100</td></tr>
+        <tr><td align="right" port="i7">IB200</td></tr>
+        <tr><td align="right" port="i8">Data: 1G Eth</td></tr>
+        <tr><td align="right" port="i9">Data: 10G Eth</td></tr>
+        <tr><td align="right" port="i10">Data: 40G Eth</td></tr>
+        <tr><td align="right" port="i11">Data: 100G Eth</td></tr>
+        <tr><td align="right" port="i12">Data: 200G Eth</td></tr>
+        <tr><td align="right" port="i13">FC 32Gbps</td></tr>
+        </table>>]
+        Key2[style=invis label=<<table border="0" cellpadding="2" cellspacing="0" cellborder="0">
+        <tr><td port="i1">&nbsp;</td></tr>
+        <tr><td port="i2">&nbsp;</td></tr>
+        <tr><td port="i3">&nbsp;</td></tr>
+        <tr><td port="i4">&nbsp;</td></tr>
+        <tr><td port="i5">&nbsp;</td></tr>
+        <tr><td port="i6">&nbsp;</td></tr>
+        <tr><td port="i7">&nbsp;</td></tr>
+        <tr><td port="i8">&nbsp;</td></tr>
+        <tr><td port="i9">&nbsp;</td></tr>
+        <tr><td port="i10">&nbsp;</td></tr>
+        <tr><td port="i11">&nbsp;</td></tr>
+        <tr><td port="i12">&nbsp;</td></tr>
+        <tr><td port="i13">&nbsp;</td></tr>
+        </table>>]
+        Key1:i1:e -> Key2:i1:w [color=red];
+        Key1:i2:e -> Key2:i2:w [color=brown];
+        Key1:i3:e -> Key2:i3:w [color=magenta];
+        Key1:i4:e -> Key2:i4:w [color=blue];
+        Key1:i5:e -> Key2:i5:w [color=pink];
+        Key1:i6:e -> Key2:i6:w [color=lightseagreen];
+        Key1:i7:e -> Key2:i7:w [color=tan];
+        Key1:i8:e -> Key2:i8:w [color=cyan];
+        Key1:i9:e -> Key2:i9:w [color=green];
+        Key1:i10:e -> Key2:i10:w [color=purple];
+        Key1:i11:e -> Key2:i11:w [color=orange];
+        Key1:i12:e -> Key2:i12:w [color=gray];
+        Key1:i13:e -> Key2:i13:w [color=darkolivegreen];
+    }
+}

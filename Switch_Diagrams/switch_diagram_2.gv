@@ -1,0 +1,14 @@
+// add Agg Switches
+digraph g {
+    ranksep=1;
+    nodesep=2;
+    FW[shape=square,label="Firewall"];
+    Data_Net[shape=square,dir=both,label="Data\nNetwork\nSwitches"];
+    Admin_Net[shape=square,dir=both,label="Admin\nNetwork\nSwitches"];
+    FW -> Data_Agg[color=green,dir=both];
+    FW -> Admin_Agg[color=red,dir=both];
+    Data_Agg[shape=square,dir=both,label="Data\nAgg\nSwitches"];
+    Admin_Agg[shape=square,dir=both,label="Admin\nAgg\nSwitches"];
+    Data_Agg -> Data_Net[color=green,dir=both];
+    Admin_Agg -> Admin_Net[color=red,dir=both];
+}

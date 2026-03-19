@@ -1,0 +1,10 @@
+// the base case
+digraph g {
+    ranksep=1;
+    nodesep=2;
+    FW[shape=square,label="Firewall"];
+    Data_Net[shape=square,dir=both,label="Data\nNetwork\nSwitches"];
+    Admin_Net[shape=square,dir=both,label="Admin\nNetwork\nSwitches"];
+    FW -> Data_Net[color=green,dir=both];
+    FW -> Admin_Net[color=red,dir=both];
+}
