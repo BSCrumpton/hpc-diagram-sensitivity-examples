@@ -1,7 +1,7 @@
 digraph g {
-    rankdir=LR;
     subgraph{
-        node[shape=box]
+        rank=same;
+        node[shape=box];
         Key1[label=<<table border="0" cellpadding="2" cellspacing="0" cellborder="0">
         <tr><td align="right" port="i1">Admin: 1G Eth</td></tr>
         <tr><td align="right" port="i2">Admin: 10G Eth</td></tr>
