@@ -5,6 +5,6 @@ digraph g {
     FW[shape=square,label="Firewall"];
     Data_Net[shape=square,dir=both,label="Data\nNetwork\nSwitches"];
     Admin_Net[shape=square,dir=both,label="Admin\nNetwork\nSwitches"];
-    FW -> Data_Net[color=green,dir=both];
-    FW -> Admin_Net[color=red,dir=both];
+    FW -> Data_Net[color=purple,dir=both];
+    FW -> Admin_Net[color=brown,dir=both];
 }
